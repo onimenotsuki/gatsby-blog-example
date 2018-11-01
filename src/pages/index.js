@@ -9,6 +9,12 @@ const BlogPost = (({ node })  => {
       <Link to={node.slug}>
         {node.title}
       </Link>
+      <div>
+        {node.content.childMarkdownRemark.excerpt}
+      </div>
+      {node.featureImage && (
+         <img src={`${node.featureImage.resize.src}`} />
+      )}
     </li>
   );
 });
@@ -28,9 +34,22 @@ export const query = graphql`
     allContentfulBlog (limit: 3) {
       edges {
         node {
+          title
           id
           slug
-          title
+          content {
+            childMarkdownRemark {
+              excerpt
+            }
+          }
+          featureImage {
+            title
+            resize (width: 200) {
+              src
+              width
+              height
+            }
+          }
         }
       }
     }

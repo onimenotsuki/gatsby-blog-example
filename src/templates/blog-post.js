@@ -34,7 +34,6 @@ export const pageQuery = graphql`
       content {
         id
         childMarkdownRemark {
-          excerpt
           html
         }
       }
