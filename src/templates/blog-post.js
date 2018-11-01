@@ -6,12 +6,17 @@ import Layout from '../components/layout';
 
 class BlogPost extends Component {
   render() {
-    const { title, content } = this.props.data.contentfulBlog;
+    const {
+      title,
+      content,
+    } = this.props.data.contentfulBlog;
 
     return (
       <Layout>
-        <div>{title}</div>
-        <div>{content.content}</div>
+        <h1>{title}</h1>
+        <div>
+          {content.childMarkdownRemark.html}
+        </div>
       </Layout>
     );
   }
@@ -25,7 +30,11 @@ export const pageQuery = graphql`
       title
       slug
       content {
-        content
+        id
+        childMarkdownRemark {
+          excerpt
+          html
+        }
       }
     }
   }
