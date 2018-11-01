@@ -14,9 +14,11 @@ class BlogPost extends Component {
     return (
       <Layout>
         <h1>{title}</h1>
-        <div>
-          {content.childMarkdownRemark.html}
-        </div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: content.childMarkdownRemark.html
+          }}
+        />
       </Layout>
     );
   }
